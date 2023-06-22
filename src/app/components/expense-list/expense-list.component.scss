@@ -1,0 +1,11 @@
+.expander-container {
+  @apply w-full border rounded-lg transition duration-200 ease-in-out;
+
+  .expander-header {
+    @apply p-4 rounded-lg cursor-pointer hover:ring-4 ring-white/50 select-none flex justify-between items-center;
+  }
+
+  .expander-content {
+    @apply p-4 flex flex-col gap-4;
+  }
+}

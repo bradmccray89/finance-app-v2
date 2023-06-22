@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 interface ITransaction {
   name: string;
   nickname: string;
@@ -28,7 +28,6 @@ export class AppComponent {
     'Other',
   ];
   showNewCategoryModal: boolean = false;
-  newCategoryName: string = '';
   currentTransaction: ITransaction | null = null;
 
   uploadFile(event: any) {
@@ -75,10 +74,8 @@ export class AppComponent {
     console.log('Clear Finance Data', fileInput);
   }
 
-  addNewCategory() {
-    console.log('Add New Category', this.newCategoryName);
-    this.categories.push(this.newCategoryName);
-    this.newCategoryName = '';
+  addNewCategory(categoryName: string) {
+    this.categories.push(categoryName);
     this.showNewCategoryModal = false;
   }
 
@@ -90,5 +87,11 @@ export class AppComponent {
     this.financeData.shift();
     this.currentTransaction = this.financeData[0];
     console.log('Categorized Finance Data', this.categorizedFinanceData);
+  }
+
+  getTransactionsForCategory(category: string) {
+    return this.categorizedFinanceData.filter((transaction) => {
+      return transaction.category === category;
+    });
   }
 }

@@ -1,0 +1,29 @@
+<div class="expander-container">
+  <div class="expander-header" (click)="toggleExpanded()">
+    <div>{{ category }}</div>
+    <div
+      class="flex flex-col items-start self-end justify-center md:items-center md:justify-start gap-x-4 md:flex-row"
+    >
+      <div>Transactions: {{ transactions.length }}</div>
+      <div>Total: {{ totalAmount | currency : "USD" }}</div>
+    </div>
+    <ng-icon
+      name="heroChevronDown"
+      [ngClass]="{ 'rotate-180': showTransactions }"
+    ></ng-icon>
+  </div>
+  <div class="expander-content" *ngIf="showTransactions">
+    <div
+      *ngFor="let transaction of transactions"
+      class="flex items-start justify-between"
+    >
+      <div class="flex flex-col items-start">
+        <div class="transaction-title">{{ transaction.name }}</div>
+        <div class="transaction-date">
+          {{ transaction.date | date : "mediumDate" }}
+        </div>
+      </div>
+      <div>{{ transaction.amount | currency : "USD" }}</div>
+    </div>
+  </div>
+</div>

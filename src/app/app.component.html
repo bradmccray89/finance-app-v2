@@ -1,11 +1,11 @@
 <div
-  class="h-screen w-screen bg-gray-900 text-white flex justify-center items-stretch"
+  class="flex items-stretch justify-center w-screen h-screen overflow-y-auto text-white bg-gray-900"
 >
   <div
-    class="max-w-[90%] flex flex-col gap-y-8 items-center justify-start w-full h-full"
+    class="max-w-[90%] flex flex-col gap-y-8 items-center justify-start m-4 h-max"
   >
-    <div class="flex flex-col gap-y-4 items-center justify-start">
-      <div class="pt-4">Finance Window</div>
+    <div class="flex flex-col items-center justify-start gap-y-4">
+      <div>Finance Window</div>
       <input
         #fileInput
         id="fileInput"
@@ -18,7 +18,10 @@
         Upload CSV File
       </button>
     </div>
-    <div class="max-w-2xl flex flex-col gap-y-4" *ngIf="currentTransaction">
+    <div
+      class="flex flex-col w-[42rem] max-w-full gap-y-4"
+      *ngIf="currentTransaction"
+    >
       <div class="transaction-container">
         <div class="transaction-title">{{ currentTransaction.name }}</div>
         <div class="transaction-date">
@@ -28,9 +31,9 @@
           {{ currentTransaction.amount | currency : "USD" }}
         </div>
       </div>
-      <div class="flex flex-col gap-y-4 items-center justify-start">
+      <div class="flex flex-col items-center justify-start gap-y-4">
         <div>Categories</div>
-        <div class="w-full flex justify-center items-center flex-wrap gap-2">
+        <div class="flex flex-wrap items-center justify-center w-full gap-2">
           <button
             *ngFor="let category of categories; let index = index"
             class="category-button"
@@ -48,13 +51,13 @@
         </div>
       </div>
     </div>
-    <div class="sorted-transactions">
-      <div class="sorted-title">Expenses</div>
-      <div class="category-container">
-        <div class="category-title">Food</div>
-        <div class="category-amount">$100.00</div>
-      </div>
-    </div>
+    <app-expense-list
+      class="w-[42rem] max-w-full"
+      *ngFor="let category of categories"
+      [hidden]="getTransactionsForCategory(category).length === 0"
+      [category]="category"
+      [transactions]="getTransactionsForCategory(category)"
+    ></app-expense-list>
   </div>
   <!-- Popup for adding a new category -->
   <div class="modal-container" *ngIf="showNewCategoryModal">
@@ -65,19 +68,18 @@
           <ng-icon name="heroXMark" strokeWidth="3"></ng-icon>
         </button>
       </div>
-      <div class="modal-body">
+      <form
+        class="modal-body"
+        (ngSubmit)="addNewCategory(newCategoryInput.value)"
+      >
         <input
+          #newCategoryInput
           class="modal-input"
           type="text"
           placeholder="Category Name"
-          [(ngModel)]="newCategoryName"
         />
-      </div>
-      <div class="modal-footer">
-        <button class="modal-button" (click)="addNewCategory()">
-          Add Category
-        </button>
-      </div>
+        <button class="modal-button" type="submit">Add Category</button>
+      </form>
     </div>
   </div>
 </div>
