@@ -1,19 +1,21 @@
 <div class="expander-container">
-  <div class="expander-header" (click)="toggleExpanded()">
-    <div>{{ category }}</div>
+  <div class="grid grid-cols-11 expander-header" (click)="toggleExpanded()">
+    <div class="flex items-center justify-start col-span-5">{{ category }}</div>
     <div
-      class="flex flex-col items-start self-end justify-center md:items-center md:justify-start gap-x-4 md:flex-row"
+      class="flex flex-col items-start justify-center w-full col-span-5 md:items-center md:justify-start gap-x-4 md:flex-row"
     >
       <div>Transactions: {{ transactions.length }}</div>
       <div>Total: {{ totalAmount | currency : "USD" }}</div>
     </div>
-    <ng-icon
-      name="heroChevronDown"
-      [ngClass]="{ 'rotate-180': showTransactions }"
-    ></ng-icon>
+    <div class="flex items-center justify-end col-span-1">
+      <ng-icon
+        name="heroChevronDown"
+        [ngClass]="{ 'rotate-180': showTransactions }"
+      ></ng-icon>
+    </div>
   </div>
   <div class="expander-content" *ngIf="showTransactions">
-    <div
+    <!-- <div
       *ngFor="let transaction of transactions"
       class="flex items-start justify-between"
     >
@@ -24,6 +26,17 @@
         </div>
       </div>
       <div>{{ transaction.amount | currency : "USD" }}</div>
+    </div> -->
+    <div class="transaction-container" *ngFor="let transaction of transactions">
+      <div class="transaction-title">{{ transaction.name }}</div>
+      <div class="flex items-center justify-between">
+        <div class="transaction-date">
+          {{ transaction.date | date : "mediumDate" }}
+        </div>
+        <div class="transaction-amount">
+          {{ transaction.amount | currency : "USD" }}
+        </div>
+      </div>
     </div>
   </div>
 </div>

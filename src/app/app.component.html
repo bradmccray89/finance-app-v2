@@ -2,7 +2,7 @@
   class="flex items-stretch justify-center w-screen h-screen overflow-y-auto text-white bg-gray-900"
 >
   <div
-    class="max-w-[90%] flex flex-col gap-y-8 items-center justify-start m-4 h-max"
+    class="w-[90%] max-w-[42rem] flex flex-col gap-y-8 items-center justify-start m-4 h-max"
   >
     <div class="flex flex-col items-center justify-start gap-y-4">
       <div>Finance Window</div>
@@ -18,17 +18,16 @@
         Upload CSV File
       </button>
     </div>
-    <div
-      class="flex flex-col w-[42rem] max-w-full gap-y-4"
-      *ngIf="currentTransaction"
-    >
+    <div class="flex flex-col gap-y-4" *ngIf="currentTransaction">
       <div class="transaction-container">
         <div class="transaction-title">{{ currentTransaction.name }}</div>
-        <div class="transaction-date">
-          {{ currentTransaction.date | date : "mediumDate" }}
-        </div>
-        <div class="transaction-amount">
-          {{ currentTransaction.amount | currency : "USD" }}
+        <div class="flex items-center justify-between">
+          <div class="transaction-date">
+            {{ currentTransaction.date | date : "mediumDate" }}
+          </div>
+          <div class="transaction-amount">
+            {{ currentTransaction.amount | currency : "USD" }}
+          </div>
         </div>
       </div>
       <div class="flex flex-col items-center justify-start gap-y-4">
@@ -52,7 +51,7 @@
       </div>
     </div>
     <app-expense-list
-      class="w-[42rem] max-w-full"
+      class="w-full"
       *ngFor="let category of categories"
       [hidden]="getTransactionsForCategory(category).length === 0"
       [category]="category"

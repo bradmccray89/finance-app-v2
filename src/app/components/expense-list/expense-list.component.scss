@@ -2,10 +2,26 @@
   @apply w-full border rounded-lg transition duration-200 ease-in-out;
 
   .expander-header {
-    @apply p-4 rounded-lg cursor-pointer hover:ring-4 ring-white/50 select-none flex justify-between items-center;
+    @apply p-4 rounded-lg cursor-pointer hover:ring-4 ring-white/50 select-none columns-3 gap-2 w-full;
   }
 
   .expander-content {
-    @apply p-4 flex flex-col gap-4;
+    @apply p-4 flex flex-col gap-2 divide-y;
+  }
+}
+
+.transaction-container {
+  @apply flex flex-col gap-y-2 justify-center w-full pt-2 first:pt-0 px-2;
+
+  .transaction-title {
+    @apply text-lg font-semibold text-white flex justify-start items-center gap-x-2;
+  }
+
+  .transaction-date {
+    @apply text-sm font-medium text-gray-400 flex justify-start items-center gap-x-2;
+  }
+
+  .transaction-amount {
+    @apply text-lg font-semibold text-white flex justify-start items-center gap-x-2;
   }
 }
