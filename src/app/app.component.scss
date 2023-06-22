@@ -1,0 +1,63 @@
+.button {
+  @apply rounded-lg px-3 py-1 text-sm font-semibold text-gray-700 bg-white hover:bg-gray-100 hover:ring-4 hover:ring-white/20;
+}
+
+.category-button {
+  @apply rounded-lg px-3 py-1 text-sm font-semibold border-2 bg-transparent hover:bg-white/10 hover:ring-4 hover:ring-white/20;
+
+  &.add-new {
+    @apply bg-white text-gray-700 border-gray-700 hover:bg-gray-100 hover:text-gray-800 flex items-center justify-center gap-2;
+  }
+}
+
+.transaction-container {
+  @apply flex flex-col gap-y-4 justify-center w-fit self-center border-2 border-white rounded-lg p-4;
+
+  .transaction-title {
+    @apply text-xl font-semibold text-white flex justify-start items-center gap-x-2;
+  }
+
+  .transaction-date {
+    @apply text-base font-medium text-gray-400 flex justify-start items-center gap-x-2;
+  }
+
+  .transaction-amount {
+    @apply text-xl font-semibold text-white flex justify-start items-center gap-x-2;
+  }
+}
+
+.modal-button {
+  @apply rounded-lg px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700;
+}
+
+.modal-container {
+  @apply fixed inset-0 flex items-center justify-center bg-black/50;
+
+  .modal {
+    @apply bg-gray-800 rounded-lg p-4 flex flex-col gap-8 justify-stretch;
+
+    .modal-header {
+      @apply flex items-center justify-between gap-x-4;
+
+      .modal-title {
+        @apply text-xl font-semibold text-white;
+      }
+
+      .modal-close {
+        @apply text-white text-xl font-bold rounded-lg p-2 bg-transparent hover:bg-gray-700 flex justify-center items-center;
+      }
+    }
+
+    .modal-body {
+      @apply flex flex-col gap-2;
+
+      .modal-input {
+        @apply rounded-lg p-3 text-sm font-semibold text-gray-700 bg-white hover:bg-gray-100;
+      }
+    }
+
+    .modal-footer {
+      @apply flex justify-end gap-2;
+    }
+  }
+}
